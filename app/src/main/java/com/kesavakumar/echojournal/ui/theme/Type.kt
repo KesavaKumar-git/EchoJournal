@@ -15,14 +15,7 @@ val provider = GoogleFont.Provider(
     certificates = R.array.com_google_android_gms_fonts_certs
 )
 
-val bodyFontFamily = FontFamily(
-    Font(
-        googleFont = GoogleFont("Inter"),
-        fontProvider = provider,
-    )
-)
-
-val displayFontFamily = FontFamily(
+val InterFontFamily = FontFamily(
     Font(
         googleFont = GoogleFont("Inter"),
         fontProvider = provider,
@@ -32,19 +25,19 @@ val displayFontFamily = FontFamily(
 val baseline = Typography()
 
 val AppTypography = Typography(
-    displayLarge = baseline.displayLarge.copy(fontFamily = displayFontFamily),
-    displayMedium = baseline.displayMedium.copy(fontFamily = displayFontFamily),
-    displaySmall = baseline.displaySmall.copy(fontFamily = displayFontFamily),
-    headlineLarge = baseline.headlineLarge.copy(fontFamily = displayFontFamily, fontSize = 26.sp, lineHeight = 32.sp),
-    headlineMedium = baseline.headlineMedium.copy(fontFamily = displayFontFamily, fontSize = 22.sp, lineHeight = 26.sp),
-    headlineSmall = baseline.headlineSmall.copy(fontFamily = displayFontFamily, fontSize = 16.sp, lineHeight = 24.sp),
-    titleLarge = baseline.titleLarge.copy(fontFamily = displayFontFamily),
-    titleMedium = baseline.titleMedium.copy(fontFamily = displayFontFamily),
-    titleSmall = baseline.titleSmall.copy(fontFamily = displayFontFamily, fontSize = 13.sp, lineHeight = 18.sp),
-    bodyLarge = baseline.bodyLarge.copy(fontFamily = bodyFontFamily),
-    bodyMedium = baseline.bodyMedium.copy(fontFamily = bodyFontFamily, fontSize = 14.sp, lineHeight = 20.sp),
-    bodySmall = baseline.bodySmall.copy(fontFamily = bodyFontFamily, fontSize = 12.sp, lineHeight = 16.sp),
-    labelLarge = baseline.labelLarge.copy(fontFamily = bodyFontFamily, fontSize = 14.sp, lineHeight = 20.sp),
-    labelMedium = baseline.labelMedium.copy(fontFamily = bodyFontFamily, fontSize = 12.sp),
-    labelSmall = baseline.labelSmall.copy(fontFamily = bodyFontFamily),
+    displayLarge = baseline.displayLarge.copy(fontFamily = InterFontFamily),
+    displayMedium = baseline.displayMedium.copy(fontFamily = InterFontFamily),
+    displaySmall = baseline.displaySmall.copy(fontFamily = InterFontFamily),
+    headlineLarge = baseline.headlineLarge.copy(fontFamily = InterFontFamily, fontSize = 26.sp, lineHeight = 32.sp),
+    headlineMedium = baseline.headlineMedium.copy(fontFamily = InterFontFamily, fontSize = 22.sp, lineHeight = 26.sp),
+    headlineSmall = baseline.headlineSmall.copy(fontFamily = InterFontFamily, fontSize = 16.sp, lineHeight = 24.sp),
+    titleLarge = baseline.titleLarge.copy(fontFamily = InterFontFamily),
+    titleMedium = baseline.titleMedium.copy(fontFamily = InterFontFamily),
+    titleSmall = baseline.titleSmall.copy(fontFamily = InterFontFamily, fontSize = 13.sp, lineHeight = 18.sp),
+    bodyLarge = baseline.bodyLarge.copy(fontFamily = InterFontFamily),
+    bodyMedium = baseline.bodyMedium.copy(fontFamily = InterFontFamily, fontSize = 14.sp, lineHeight = 20.sp),
+    bodySmall = baseline.bodySmall.copy(fontFamily = InterFontFamily, fontSize = 12.sp, lineHeight = 16.sp),
+    labelLarge = baseline.labelLarge.copy(fontFamily = InterFontFamily, fontSize = 14.sp, lineHeight = 20.sp),
+    labelMedium = baseline.labelMedium.copy(fontFamily = InterFontFamily, fontSize = 12.sp),
+    labelSmall = baseline.labelSmall.copy(fontFamily = InterFontFamily),
 )

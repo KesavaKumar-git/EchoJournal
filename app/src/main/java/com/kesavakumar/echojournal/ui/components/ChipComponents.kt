@@ -44,13 +44,13 @@ import com.kesavakumar.echojournal.ui.screens.journalListScreen.JournalListActio
 @Composable
 fun JournalFilterChip(
     value: String,
-    onSelected: (JournalListAction) -> Unit,
+    onAction: (JournalListAction) -> Unit,
     onClear: () -> Unit,
-    isSelected: Boolean,
     leadingIcons: List<Int>?,
     list: List<String>? = null,
     selectedIds: List<String> = emptyList()
 ) {
+    var isFilterSelected by remember(selectedIds) { mutableStateOf(selectedIds.isNotEmpty()) }
     var expanded by remember { mutableStateOf(false) }
 
     AssistChip(
@@ -77,7 +77,7 @@ fun JournalFilterChip(
             }
         },
         trailingIcon = {
-            if (isSelected)
+            if (isFilterSelected)
                     Icon(
                         imageVector = Icons.Filled.Clear,
                         contentDescription = "Clear",
@@ -85,9 +85,9 @@ fun JournalFilterChip(
                         modifier = Modifier.size(18.dp).clip(CircleShape).clickable { onClear() }
                     )
         },
-        border = BorderStroke(1.dp, if (isSelected || expanded) MaterialTheme.colorScheme.primaryContainer else MaterialTheme.colorScheme.outlineVariant),
+        border = BorderStroke(1.dp, if (isFilterSelected || expanded) MaterialTheme.colorScheme.primaryContainer else MaterialTheme.colorScheme.outlineVariant),
         shape = CircleShape,
-        colors = AssistChipDefaults.assistChipColors(containerColor = if (isSelected) MaterialTheme.colorScheme.onBackground else Color.Transparent)
+        colors = AssistChipDefaults.assistChipColors(containerColor = if (isFilterSelected) MaterialTheme.colorScheme.onBackground else Color.Transparent)
     )
 
     val configuration = LocalConfiguration.current
@@ -104,8 +104,11 @@ fun JournalFilterChip(
         if(list != null)
         {
             list.forEach { item ->
+
+                val isSelected = selectedIds.contains(item)
+
                 DropdownMenuItem(
-                    onClick = { onSelected(JournalListAction.SelectTopic(item)) },
+                    onClick = { if (isSelected) onAction(JournalListAction.DeselectTopic(item)) else onAction(JournalListAction.SelectTopic(item)) },
                     text = {
                         Text(
                             text = item,
@@ -130,12 +133,16 @@ fun JournalFilterChip(
                                 tint = MaterialTheme.colorScheme.primary)
                         }
                     },
-                    contentPadding = PaddingValues(horizontal = 16.dp, vertical = 2.dp),
+                    contentPadding = PaddingValues(horizontal = 10.dp, vertical = 0.dp),
                     modifier = Modifier
-                        .fillMaxWidth()
+                        .padding(horizontal = 4.dp, vertical = 2.dp)
                         .then(
                             if (selectedIds.contains(item))
-                                Modifier.background(Color.LightGray, shape = RoundedCornerShape(10.dp))
+                                Modifier
+                                    .background(
+                                        color = MaterialTheme.colorScheme.tertiary.copy(alpha = 0.05f),
+                                        shape = RoundedCornerShape(8.dp)
+                                    )
                             else
                                 Modifier
                         )
@@ -147,13 +154,22 @@ fun JournalFilterChip(
 
             Mood.entries.forEach { mood ->
 
+                val isSelected = selectedIds.contains(mood.name)
+
                 DropdownMenuItem(
-                    onClick = { onSelected(JournalListAction.SelectMood(mood)) },
-
-                    text = { Text(mood.name) },
-
-                    leadingIcon = { Image(painter = painterResource(id = mood.getMoodIconResId()), contentDescription = mood.name, modifier = Modifier.size(24.dp)) },
-
+                    onClick = { if (isSelected) onAction(JournalListAction.DeselectMood(mood)) else onAction(JournalListAction.SelectMood(mood)) },
+                    text = {
+                        Text(
+                            text = mood.name,
+                            style = MaterialTheme.typography.labelLarge,
+                            color = MaterialTheme.colorScheme.secondary)
+                    },
+                    leadingIcon = {
+                        Image(
+                            painter = painterResource(id = mood.getMoodIconResId()),
+                            contentDescription = mood.name,
+                            modifier = Modifier.size(24.dp))
+                    },
                     trailingIcon = {
                         if (selectedIds.contains(mood.name))
                         {
@@ -164,12 +180,16 @@ fun JournalFilterChip(
                                 tint = MaterialTheme.colorScheme.primary)
                         }
                     },
-                    contentPadding = PaddingValues(horizontal = 15.dp, vertical = 1.dp),
-
+                    contentPadding = PaddingValues(horizontal = 10.dp, vertical = 0.dp),
                     modifier = Modifier
+                        .padding(horizontal = 4.dp, vertical = 2.dp)
                         .then(
                             if (selectedIds.contains(mood.name))
-                                Modifier.background(Color.LightGray, shape = RoundedCornerShape(10.dp))
+                                Modifier
+                                    .background(
+                                        color = MaterialTheme.colorScheme.tertiary.copy(alpha = 0.05f),
+                                        shape = RoundedCornerShape(8.dp)
+                                    )
                             else
                                 Modifier
                         )

@@ -133,7 +133,7 @@ private fun EchoJournalItemPreview()
                 date = "",
                 time = "10:00 AM",
                 description = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec odio nec nunc.",
-                selectedMood = Mood.NEUTRAL,
+                selectedMood = Mood.Neutral,
                 topics = listOf("Topic", "Work")
             )
         )

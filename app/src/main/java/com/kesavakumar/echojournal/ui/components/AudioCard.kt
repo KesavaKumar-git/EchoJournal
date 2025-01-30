@@ -52,6 +52,6 @@ fun AudioCard(playButtonColor: Color, bgColor: Color)
 private fun AudioCardRoot()
 {
     EchoJournalTheme {
-        AudioCard(Mood.NEUTRAL.getMoodColor(), Mood.NEUTRAL.getMoodBgColor())
+        AudioCard(Mood.Neutral.getMoodColor(), Mood.Neutral.getMoodBgColor())
     }
 }

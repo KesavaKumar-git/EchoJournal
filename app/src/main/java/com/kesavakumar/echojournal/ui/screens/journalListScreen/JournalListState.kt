@@ -9,5 +9,7 @@ data class JournalListState(
     val selectedTopics: Set<String> = emptySet(),
     val currentlyPlayingId: String? = null,
     val isRecording: Boolean = false,
-    val showSheetToRecord: Boolean = false
+    val showSheetToRecord: Boolean = false,
+    val recordingTime: String = "",
+    val isPaused: Boolean = false
 )

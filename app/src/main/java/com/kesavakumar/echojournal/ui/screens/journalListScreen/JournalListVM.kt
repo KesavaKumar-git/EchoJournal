@@ -52,7 +52,15 @@ class JournalListVM @Inject constructor(
                 }
 
                 is JournalListAction.CanShowSheetToRecord -> {
-                    it.copy(showSheetToRecord = action.show)
+
+                    if (action.show)
+                    {
+                        it.copy(showSheetToRecord = true)
+                    }
+                    else
+                    {
+                        it.copy(showSheetToRecord = false, isRecording = false, isPaused = false, recordingTime = "")
+                    }
                 }
 
                 JournalListAction.StartRecording -> {

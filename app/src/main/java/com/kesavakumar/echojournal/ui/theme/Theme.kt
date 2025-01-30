@@ -1,10 +1,13 @@
 package com.kesavakumar.echojournal.ui.theme
 
 import androidx.compose.foundation.isSystemInDarkTheme
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Shapes
 import androidx.compose.material3.darkColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.unit.dp
 
 private val lightScheme = lightColorScheme(
     primary = primaryLight,
@@ -82,11 +85,15 @@ private val darkScheme = darkColorScheme(
     surfaceContainerHighest = surfaceContainerHighestDark,
 )
 
+private val AppShapes = Shapes(extraSmall = RoundedCornerShape(10.dp))
+
 @Composable
-fun EchoJournalTheme(darkTheme: Boolean = isSystemInDarkTheme(),
+fun EchoJournalTheme(
+    darkTheme: Boolean = isSystemInDarkTheme(),
     // Dynamic color is available on Android 12+
-    dynamicColor: Boolean = true, content: @Composable () -> Unit)
-{
+    dynamicColor: Boolean = true,
+    content: @Composable () -> Unit
+) {
     val colorScheme = when
     {
 //        dynamicColor && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S ->
@@ -99,5 +106,5 @@ fun EchoJournalTheme(darkTheme: Boolean = isSystemInDarkTheme(),
         else -> lightScheme
     }
 
-    MaterialTheme(colorScheme = colorScheme, typography = AppTypography, content = content)
+    MaterialTheme(colorScheme = colorScheme, typography = AppTypography, shapes = AppShapes, content = content)
 }
